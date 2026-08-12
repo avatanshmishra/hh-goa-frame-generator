@@ -90,11 +90,12 @@ function App() {
   }
 
   async function handleImage(file) {
-    if (!file) return;
+    if (!file) {
+      return;
+    }
 
     try {
       const converted = await convertFile(file);
-
       const url = URL.createObjectURL(converted);
 
       setPhoto({
@@ -102,20 +103,28 @@ function App() {
         file: converted,
       });
     } catch (error) {
-      console.error(error);
+      console.error("Image loading failed:", error);
       alert("Could not load this image.");
     }
   }
 
   function handleFileChange(event) {
-    handleImage(event.target.files[0]);
+    const file = event.target.files[0];
+
+    if (file) {
+      handleImage(file);
+    }
   }
 
   function handleDrop(event) {
     event.preventDefault();
     setDragging(false);
 
-    handleImage(event.dataTransfer.files[0]);
+    const file = event.dataTransfer.files[0];
+
+    if (file) {
+      handleImage(file);
+    }
   }
 
   function loadImage(url) {
@@ -130,7 +139,9 @@ function App() {
   }
 
   async function updateCard() {
-    if (!photo || !canvasRef.current) return;
+    if (!photo || !canvasRef.current) {
+      return;
+    }
 
     try {
       const image = await loadImage(photo.url);
@@ -156,13 +167,14 @@ function App() {
   }
 
   function downloadCard() {
-    if (!photo) {
-      alert("Upload a photo first.");
+    if (!canvasRef.current || !photo) {
       return;
     }
 
     canvasRef.current.toBlob((blob) => {
-      if (!blob) return;
+      if (!blob) {
+        return;
+      }
 
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -170,21 +182,23 @@ function App() {
       link.href = url;
       link.download = "FrameInGoa-2026.png";
 
+      document.body.appendChild(link);
       link.click();
+      link.remove();
 
       URL.revokeObjectURL(url);
     }, "image/png");
   }
 
   function shareToX() {
-    const text =
-      "Building my identity at Hacker House Goa 2026 🚀 #FrameInGoa";
+    const postText =
+      "Building my frame at Hacker House Goa 2026 - #FrameInGoa";
 
-    const url =
+    const xUrl =
       "https://twitter.com/intent/tweet?text=" +
-      encodeURIComponent(text);
+      encodeURIComponent(postText);
 
-    window.open(url, "_blank");
+    window.open(xUrl, "_blank", "noopener,noreferrer");
   }
 
   return (
@@ -240,7 +254,9 @@ function App() {
               event.preventDefault();
               setDragging(true);
             }}
-            onDragLeave={() => setDragging(false)}
+            onDragLeave={() => {
+              setDragging(false);
+            }}
             onDrop={handleDrop}
           >
             {photo ? (
@@ -284,9 +300,9 @@ function App() {
               value={name}
               maxLength={28}
               placeholder="Your name"
-              onChange={(event) =>
-                setName(event.target.value)
-              }
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
             />
           </div>
 
@@ -298,14 +314,17 @@ function App() {
             <select
               value={stack}
               onChange={(event) => {
-                setStack(event.target.value);
-                setTitle(
-                  titles[event.target.value][0]
-                );
+                const selectedStack = event.target.value;
+
+                setStack(selectedStack);
+                setTitle(titles[selectedStack][0]);
               }}
             >
               {Object.keys(titles).map((item) => (
-                <option key={item} value={item}>
+                <option
+                  key={item}
+                  value={item}
+                >
                   {item}
                 </option>
               ))}
@@ -318,16 +337,23 @@ function App() {
                 BUILDER TITLE
               </label>
 
-              <strong>{title}</strong>
+              <strong>
+                {title}
+              </strong>
             </div>
 
-            <button onClick={regenerateTitle}>
+            <button
+              type="button"
+              onClick={regenerateTitle}
+              aria-label="Generate another title"
+            >
               <RotateCcw size={18} />
             </button>
           </div>
 
           <div className="actions">
             <button
+              type="button"
               className="download-button"
               disabled={!photo}
               onClick={downloadCard}
@@ -337,6 +363,7 @@ function App() {
             </button>
 
             <button
+              type="button"
               className="share-button"
               disabled={!photo}
               onClick={shareToX}
@@ -368,6 +395,7 @@ function App() {
             {!photo && (
               <div className="empty-preview">
                 <strong>YOUR CARD</strong>
+
                 <span>
                   Upload a photo to begin
                 </span>

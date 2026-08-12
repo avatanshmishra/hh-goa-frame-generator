@@ -190,16 +190,98 @@ function App() {
     }, "image/png");
   }
 
-  function shareToX() {
+  async function shareToX() {
+  if (!canvasRef.current || !photo) {
+    return;
+  }
+
+  try {
+    const blob = await new Promise((resolve) => {
+      canvasRef.current.toBlob(resolve, "image/png");
+    });
+
+    if (!blob) {
+      throw new Error("Canvas image could not be created.");
+    }
+
+    const cloudName =
+      import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+
+    const uploadPreset =
+      import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+
+    console.log("Cloud name:", cloudName);
+    console.log("Upload preset:", uploadPreset);
+    console.log("Blob:", blob);
+
+    if (!cloudName) {
+      throw new Error(
+        "VITE_CLOUDINARY_CLOUD_NAME is missing."
+      );
+    }
+
+    if (!uploadPreset) {
+      throw new Error(
+        "VITE_CLOUDINARY_UPLOAD_PRESET is missing."
+      );
+    }
+
+    const formData = new FormData();
+
+    formData.append(
+      "file",
+      blob,
+      "FrameInGoa-2026.png"
+    );
+
+    formData.append(
+      "upload_preset",
+      uploadPreset
+    );
+
+    const uploadUrl =
+      `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+
+    const response = await fetch(uploadUrl, {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    console.log("Cloudinary response:", data);
+
+    if (!response.ok) {
+      throw new Error(
+        data.error?.message ||
+        "Cloudinary upload failed."
+      );
+    }
+
+    const imageUrl = data.secure_url;
+
     const postText =
-      "Building my frame at Hacker House Goa 2026 - #FrameInGoa";
+      `Building my identity at Hacker House Goa 2026 🌴 #FrameInGoa ${imageUrl}`;
 
     const xUrl =
       "https://twitter.com/intent/tweet?text=" +
       encodeURIComponent(postText);
 
-    window.open(xUrl, "_blank", "noopener,noreferrer");
+    window.open(
+      xUrl,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+  } catch (error) {
+    console.error("X sharing failed:", error);
+
+    alert(
+      "Could not prepare the card for X.\n\n" +
+      error.message
+    );
   }
+}
 
   return (
     <div className="app">

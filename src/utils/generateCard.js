@@ -43,9 +43,9 @@ function drawPalm(ctx, x, y, scale) {
   ctx.translate(x, y);
   ctx.scale(scale, scale);
 
-  ctx.strokeStyle = colors.black;
-  ctx.lineWidth = 4;
-  ctx.fillStyle = colors.green;
+  ctx.strokeStyle = colors.darkGreen;
+  ctx.lineWidth = 3;
+  ctx.fillStyle = "#16834F";
 
   ctx.beginPath();
 
@@ -102,7 +102,7 @@ function drawSun(ctx) {
 
   ctx.arc(
     540,
-    820,
+    775,
     95,
     Math.PI,
     Math.PI * 2
@@ -150,22 +150,22 @@ function drawBeach(ctx) {
 
   ctx.fillRect(
     0,
-    720,
+    670,
     1080,
-    360
+    4100
   );
 
   ctx.fillStyle = colors.green;
 
   ctx.beginPath();
 
-  ctx.moveTo(0, 735);
+  ctx.moveTo(0, 690);
 
   ctx.quadraticCurveTo(
     180,
-    675,
+    635,
     350,
-    735
+    705
   );
 
   ctx.quadraticCurveTo(
@@ -260,23 +260,22 @@ export function generateCard(
   // Main heading
   ctx.textAlign = "center";
 
-  ctx.font = "900 105px Georgia";
-
+  ctx.font = '900 118px "Bodoni Moda", Georgia, serif';
   ctx.fillText(
     "HACKER HOUSE",
     width / 2,
-    220
+    245
   );
 
   // Goa text
   ctx.fillStyle = colors.pink;
 
-  ctx.font = "900 70px Arial";
+  ctx.font = '900 76px "Space Grotesk", Arial, sans-serif';
 
   ctx.fillText(
     "गोवा",
     width / 2,
-    295
+    325
   );
 
   // Profile image
@@ -320,61 +319,61 @@ export function generateCard(
 
   ctx.restore();
 
-  // IMPORTANT:
-  // Draw the beach before the user information.
-  // Otherwise the beach will cover the text.
 
   drawBeach(ctx);
 
-  // Name
-  ctx.textAlign = "left";
 
-  ctx.fillStyle = colors.cream;
+   ctx.textAlign = "left";
+   ctx.fillStyle = colors.cream;
 
-  ctx.font = "900 42px Arial";
+   ctx.font =
+    '900 48px "Space Grotesk", Arial, sans-serif';
 
-  ctx.fillText(
-    String(name || "YOUR NAME").toUpperCase(),
-    55,
-    785
-  );
+ctx.fillText(
+  String(name || "YOUR NAME").toUpperCase(),
+  55,
+  955
+);
 
-  // Stack
-  ctx.fillStyle = colors.yellow;
+// Stack / role
+ctx.fillStyle = colors.yellow;
 
-  ctx.font = "700 21px monospace";
+ctx.font =
+  '500 22px "DM Mono", monospace';
 
-  ctx.fillText(
-    String(stack || "AI / ML").toUpperCase(),
-    55,
-    820
-  );
+ctx.fillText(
+  String(stack || "AI / ML").toUpperCase(),
+  58,
+  992
+);
 
-  // Builder title
-  ctx.textAlign = "right";
+// Builder title
+ctx.textAlign = "right";
 
-  ctx.fillStyle = colors.pink;
+ctx.fillStyle = colors.pink;
 
-  ctx.font = "700 21px Arial";
+ctx.font =
+  '700 22px "Space Grotesk", Arial, sans-serif';
 
-  ctx.fillText(
-    String(title || "BUILDER"),
-    1025,
-    820
-  );
+ctx.fillText(
+  String(title || "BUILDER").toUpperCase(),
+  1025,
+  992
+);
 
   // Hashtag
   ctx.textAlign = "left";
 
   ctx.fillStyle = colors.black;
 
-  ctx.font = "700 20px Arial";
+  ctx.font =
+  '500 17px "DM Mono", monospace';
 
   ctx.fillText(
-    "#FrameInGoa",
-    55,
-    1030
-  );
+  "#FrameInGoa",
+  55,
+  1040
+);
 
   // Border
   ctx.strokeStyle = colors.yellow;

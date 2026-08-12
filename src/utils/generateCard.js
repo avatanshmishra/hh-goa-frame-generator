@@ -7,38 +7,21 @@ const colors = {
   black: "#10251A",
 };
 
-function drawCoverImage(
-  ctx,
-  image,
-  x,
-  y,
-  width,
-  height
-) {
-  const imageRatio =
-    image.width / image.height;
-
-  const boxRatio =
-    width / height;
+function drawCoverImage(ctx, image, x, y, width, height) {
+  const imageRatio = image.width / image.height;
+  const boxRatio = width / height;
 
   let sourceWidth = image.width;
   let sourceHeight = image.height;
-
   let sourceX = 0;
   let sourceY = 0;
 
   if (imageRatio > boxRatio) {
-    sourceWidth =
-      image.height * boxRatio;
-
-    sourceX =
-      (image.width - sourceWidth) / 2;
+    sourceWidth = image.height * boxRatio;
+    sourceX = (image.width - sourceWidth) / 2;
   } else {
-    sourceHeight =
-      image.width / boxRatio;
-
-    sourceY =
-      (image.height - sourceHeight) / 2;
+    sourceHeight = image.width / boxRatio;
+    sourceY = (image.height - sourceHeight) / 2;
   }
 
   ctx.drawImage(
@@ -86,30 +69,28 @@ function drawPalm(ctx, x, y, scale) {
     [-5, 10, -50, 35],
   ];
 
-  leaves.forEach(
-    ([x1, y1, x2, y2]) => {
-      ctx.beginPath();
+  leaves.forEach(([x1, y1, x2, y2]) => {
+    ctx.beginPath();
 
-      ctx.moveTo(5, 0);
+    ctx.moveTo(5, 0);
 
-      ctx.quadraticCurveTo(
-        x1,
-        y1,
-        x2,
-        y2
-      );
+    ctx.quadraticCurveTo(
+      x1,
+      y1,
+      x2,
+      y2
+    );
 
-      ctx.quadraticCurveTo(
-        x1 + 20,
-        y1 + 20,
-        5,
-        0
-      );
+    ctx.quadraticCurveTo(
+      x1 + 20,
+      y1 + 20,
+      5,
+      0
+    );
 
-      ctx.fill();
-      ctx.stroke();
-    }
-  );
+    ctx.fill();
+    ctx.stroke();
+  });
 
   ctx.restore();
 }
@@ -225,8 +206,7 @@ export function generateCard(
     title,
   }
 ) {
-  const ctx =
-    canvas.getContext("2d");
+  const ctx = canvas.getContext("2d");
 
   const width = 1080;
   const height = 1080;
@@ -238,6 +218,7 @@ export function generateCard(
     height
   );
 
+  // Background
   ctx.fillStyle = colors.green;
 
   ctx.fillRect(
@@ -247,12 +228,11 @@ export function generateCard(
     height
   );
 
+  // Studio
   ctx.fillStyle = colors.yellow;
-
-  ctx.font =
-    "700 22px Arial";
-
   ctx.textAlign = "left";
+
+  ctx.font = "700 22px Arial";
 
   ctx.fillText(
     "2:47 PM",
@@ -260,8 +240,7 @@ export function generateCard(
     60
   );
 
-  ctx.font =
-    "700 18px Arial";
+  ctx.font = "700 18px Arial";
 
   ctx.fillText(
     "STUDIO",
@@ -269,8 +248,8 @@ export function generateCard(
     84
   );
 
-  ctx.font =
-    "700 18px monospace";
+  // Event information
+  ctx.font = "700 18px monospace";
 
   ctx.fillText(
     "GOA, INDIA · 28—31 OCT 2026",
@@ -278,10 +257,10 @@ export function generateCard(
     125
   );
 
+  // Main heading
   ctx.textAlign = "center";
 
-  ctx.font =
-    "900 105px Georgia";
+  ctx.font = "900 105px Georgia";
 
   ctx.fillText(
     "HACKER HOUSE",
@@ -289,10 +268,10 @@ export function generateCard(
     220
   );
 
+  // Goa text
   ctx.fillStyle = colors.pink;
 
-  ctx.font =
-    "900 70px Arial";
+  ctx.font = "900 70px Arial";
 
   ctx.fillText(
     "गोवा",
@@ -300,6 +279,7 @@ export function generateCard(
     295
   );
 
+  // Profile image
   const photoX = 210;
   const photoY = 340;
   const photoWidth = 660;
@@ -327,62 +307,68 @@ export function generateCard(
 
   ctx.clip();
 
-  drawCoverImage(
-    ctx,
-    image,
-    photoX,
-    photoY,
-    photoWidth,
-    photoHeight
-  );
+  if (image) {
+    drawCoverImage(
+      ctx,
+      image,
+      photoX,
+      photoY,
+      photoWidth,
+      photoHeight
+    );
+  }
 
   ctx.restore();
 
+  // IMPORTANT:
+  // Draw the beach before the user information.
+  // Otherwise the beach will cover the text.
+
+  drawBeach(ctx);
+
+  // Name
   ctx.textAlign = "left";
 
   ctx.fillStyle = colors.cream;
 
-  ctx.font =
-    "900 42px Arial";
+  ctx.font = "900 42px Arial";
 
   ctx.fillText(
-    name.toUpperCase(),
+    String(name || "YOUR NAME").toUpperCase(),
     55,
     785
   );
 
+  // Stack
   ctx.fillStyle = colors.yellow;
 
-  ctx.font =
-    "700 21px monospace";
+  ctx.font = "700 21px monospace";
 
   ctx.fillText(
-    stack.toUpperCase(),
+    String(stack || "AI / ML").toUpperCase(),
     55,
     820
   );
 
+  // Builder title
   ctx.textAlign = "right";
 
   ctx.fillStyle = colors.pink;
 
-  ctx.font =
-    "700 21px Arial";
+  ctx.font = "700 21px Arial";
 
   ctx.fillText(
-    title,
+    String(title || "BUILDER"),
     1025,
     820
   );
 
-  drawBeach(ctx);
-
+  // Hashtag
   ctx.textAlign = "left";
 
   ctx.fillStyle = colors.black;
 
-  ctx.font =
-    "700 20px Arial";
+  ctx.font = "700 20px Arial";
 
   ctx.fillText(
     "#FrameInGoa",
@@ -390,6 +376,7 @@ export function generateCard(
     1030
   );
 
+  // Border
   ctx.strokeStyle = colors.yellow;
 
   ctx.lineWidth = 5;

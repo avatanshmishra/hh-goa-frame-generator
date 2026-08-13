@@ -402,3 +402,20 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+.hero {
+  padding: 55px 40px 0;
+  overflow: hidden;
+}
+
+.scenery {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  margin-top: 40px;
+}
+
+.scenery svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}

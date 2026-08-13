@@ -315,6 +315,152 @@ function App() {
           Create your builder identity
           for Hacker House Goa 2026.
         </p>
+
+        <div className="scenery">
+          <svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice">
+            {/* sun rays */}
+            <g stroke="#ffd600" strokeWidth="5" strokeLinecap="round">
+              <line x1="600" y1="70" x2="600" y2="115" />
+              <line x1="600" y1="70" x2="600" y2="115" transform="rotate(30 600 260)" />
+              <line x1="600" y1="70" x2="600" y2="115" transform="rotate(60 600 260)" />
+              <line x1="600" y1="70" x2="600" y2="115" transform="rotate(-30 600 260)" />
+              <line x1="600" y1="70" x2="600" y2="115" transform="rotate(-60 600 260)" />
+              <line x1="600" y1="55" x2="600" y2="105" transform="rotate(15 600 260)" />
+              <line x1="600" y1="55" x2="600" y2="105" transform="rotate(-15 600 260)" />
+              <line x1="600" y1="55" x2="600" y2="105" transform="rotate(45 600 260)" />
+              <line x1="600" y1="55" x2="600" y2="105" transform="rotate(-45 600 260)" />
+              <line x1="600" y1="55" x2="600" y2="105" transform="rotate(75 600 260)" />
+              <line x1="600" y1="55" x2="600" y2="105" transform="rotate(-75 600 260)" />
+            </g>
+
+            {/* sun */}
+            <circle cx="600" cy="260" r="95" fill="#ffd600" />
+
+            {/* hills */}
+            <ellipse cx="150" cy="320" rx="220" ry="60" fill="#1a8a5c" opacity="0.45" />
+            <ellipse cx="1060" cy="320" rx="220" ry="60" fill="#1a8a5c" opacity="0.45" />
+
+            {/* boat */}
+            <g transform="translate(210,305)">
+              <path d="M-25,10 L25,10 L15,20 L-15,20 Z" fill="#f7f1d4" />
+              <line x1="0" y1="10" x2="0" y2="-14" stroke="#f7f1d4" strokeWidth="2" />
+            </g>
+
+            {/* water */}
+            <path d="M0,300 L1200,300 L1200,400 L0,400 Z" fill="#004d2c" />
+            <g stroke="#ffd600" strokeWidth="3" opacity="0.55" strokeLinecap="round">
+              <line x1="520" y1="315" x2="680" y2="315" />
+              <line x1="540" y1="332" x2="660" y2="332" />
+              <line x1="500" y1="349" x2="700" y2="349" />
+              <line x1="530" y1="366" x2="670" y2="366" />
+              <line x1="470" y1="383" x2="730" y2="383" />
+            </g>
+            <g stroke="#f7f1d4" strokeWidth="2" opacity="0.35" fill="none">
+              <path d="M0,330 Q50,320 100,330 T200,330 T300,330 T400,330 T500,330" />
+              <path d="M700,330 Q750,320 800,330 T900,330 T1000,330 T1100,330 T1200,330" />
+              <path d="M0,360 Q50,350 100,360 T200,360 T300,360 T400,360 T500,360" />
+              <path d="M700,360 Q750,350 800,360 T900,360 T1000,360 T1100,360 T1200,360" />
+            </g>
+
+            {/* sand */}
+            <path d="M0,395 Q150,380 300,400 T600,395 T900,400 T1200,392 L1200,560 L0,560 Z" fill="#f7f1d4" />
+
+            {/* houses row */}
+            <g>
+              {/* house 1 */}
+              <rect x="70" y="460" width="150" height="100" fill="#ffffff" stroke="#006b3f" strokeWidth="3" />
+              <polygon points="55,460 145,405 235,460" fill="#006b3f" />
+              <rect x="95" y="500" width="30" height="30" fill="#004d2c" />
+              <rect x="160" y="500" width="30" height="30" fill="#ffd600" />
+
+              {/* house 2 */}
+              <rect x="250" y="475" width="130" height="85" fill="#ffffff" stroke="#006b3f" strokeWidth="3" />
+              <polygon points="238,475 315,430 392,475" fill="#ff1493" />
+              <circle cx="285" cy="510" r="14" fill="#006b3f" />
+              <rect x="330" y="505" width="25" height="30" fill="#004d2c" />
+
+              {/* beach bar */}
+              <g transform="translate(560,420)">
+                <rect x="0" y="40" width="160" height="90" fill="#ffffff" stroke="#006b3f" strokeWidth="3" />
+                <polygon points="-15,40 80,0 175,40" fill="#006b3f" />
+                <rect x="20" y="-8" width="120" height="26" rx="4" fill="#ff1493" />
+                <rect x="30" y="-4" width="100" height="16" fill="none" stroke="#ffd600" strokeWidth="2" />
+                <rect x="15" y="70" width="130" height="10" fill="#004d2c" />
+                <circle cx="30" cy="95" r="6" fill="#006b3f" />
+                <line x1="30" y1="95" x2="30" y2="115" stroke="#006b3f" strokeWidth="3" />
+                <circle cx="60" cy="95" r="6" fill="#006b3f" />
+                <line x1="60" y1="95" x2="60" y2="115" stroke="#006b3f" strokeWidth="3" />
+                {/* surfboards */}
+                <ellipse cx="180" cy="90" rx="8" ry="45" fill="#ffd600" transform="rotate(-8 180 90)" />
+                <ellipse cx="195" cy="92" rx="7" ry="42" fill="#ff1493" transform="rotate(6 195 92)" />
+              </g>
+
+              {/* house 4 */}
+              <rect x="800" y="470" width="140" height="90" fill="#ffffff" stroke="#006b3f" strokeWidth="3" />
+              <polygon points="788,470 870,420 952,470" fill="#ffd600" />
+              <rect x="825" y="505" width="28" height="28" fill="#ff1493" />
+              <rect x="885" y="505" width="28" height="28" fill="#004d2c" />
+
+              {/* house 5 */}
+              <rect x="960" y="480" width="150" height="80" fill="#ffffff" stroke="#006b3f" strokeWidth="3" />
+              <polygon points="948,480 1035,435 1122,480" fill="#006b3f" />
+              <circle cx="1000" cy="515" r="13" fill="#ff1493" />
+              <rect x="1045" y="512" width="26" height="28" fill="#004d2c" />
+            </g>
+
+            {/* umbrellas + loungers */}
+            <g transform="translate(180,430)">
+              <path d="M-45,0 A45,30 0 0 1 45,0 Z" fill="#ffd600" />
+              <path d="M-45,0 A45,30 0 0 1 -15,-6 L-15,0 Z" fill="#f7f1d4" />
+              <path d="M15,-6 A45,30 0 0 1 45,0 L15,0 Z" fill="#f7f1d4" />
+              <line x1="0" y1="0" x2="0" y2="60" stroke="#006b3f" strokeWidth="4" />
+              <rect x="-40" y="55" width="80" height="6" fill="#006b3f" />
+              <line x1="-30" y1="61" x2="-30" y2="75" stroke="#006b3f" strokeWidth="4" />
+              <line x1="30" y1="61" x2="30" y2="75" stroke="#006b3f" strokeWidth="4" />
+            </g>
+            <g transform="translate(340,440)">
+              <path d="M-42,0 A42,28 0 0 1 42,0 Z" fill="#ff1493" />
+              <path d="M-42,0 A42,28 0 0 1 -14,-6 L-14,0 Z" fill="#f7f1d4" />
+              <path d="M14,-6 A42,28 0 0 1 42,0 L14,0 Z" fill="#f7f1d4" />
+              <line x1="0" y1="0" x2="0" y2="55" stroke="#006b3f" strokeWidth="4" />
+              <rect x="-36" y="50" width="72" height="6" fill="#006b3f" />
+            </g>
+
+            {/* palm trees */}
+            {[
+              { x: 90, scale: 1, flip: 1 },
+              { x: 1110, scale: 1.1, flip: -1 },
+            ].map((p, i) => (
+              <g key={i} transform={`translate(${p.x},560) scale(${p.scale * p.flip},${p.scale})`}>
+                <path
+                  d="M0,0 C10,-120 -20,-220 5,-320"
+                  fill="none"
+                  stroke="#004d2c"
+                  strokeWidth="16"
+                  strokeLinecap="round"
+                />
+                <g transform="translate(5,-320)">
+                  {[-70, -35, 0, 35, 70, -50, 50].map((ang, j) => (
+                    <path
+                      key={j}
+                      d="M0,0 C30,-15 70,-5 95,15 C60,10 25,15 0,0 Z"
+                      fill="#006b3f"
+                      transform={`rotate(${ang})`}
+                    />
+                  ))}
+                </g>
+              </g>
+            ))}
+
+            {/* people */}
+            <g fill="#ffffff">
+              <circle cx="130" cy="480" r="7" />
+              <rect x="126" y="487" width="8" height="28" rx="3" />
+              <circle cx="1080" cy="490" r="7" />
+              <rect x="1076" y="497" width="8" height="28" rx="3" />
+            </g>
+          </svg>
+        </div>
       </section>
 
       <main className="workspace">
